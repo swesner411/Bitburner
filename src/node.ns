@@ -5,7 +5,7 @@ export async function main(ns) {
     if (ns.fileExists("BruteSSH.exe", "home")) {
         ns.brutessh(target);
     }
-    ns.nuke(target);
+	if(target!='home') {ns.nuke(target)}
     while(true) {
         if (ns.getServerSecurityLevel(target) > securityThresh) {
             await ns.weaken(target);
