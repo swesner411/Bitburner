@@ -8,7 +8,7 @@ const servers = [
 	'n00dles',
 	'foodnstuff',
 	'sigma-cosmetics',
-	'joesguns'
+	'joesguns',
 ]
 
 const start = "node.ns"
