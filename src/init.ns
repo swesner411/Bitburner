@@ -28,8 +28,7 @@ export async function main(ns) {
 	for (let i = 0; i < servers.length; i++) {
 		await ns.killall(servers[i])
 		await ns.scp(filesToDownload, 'home', servers[i])
-		
+		await ns.run(start, hostname)
 		ns.exec(start, servers[i], 1, servers[i], 1, 1)
-		ns.run(start,hostname)
 	}
 }
