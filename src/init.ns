@@ -25,6 +25,7 @@ export async function main(ns) {
 		await ns.sleep(200)
 		await ns.wget(path, filename)
 	}
+	await ns.killall('home')
 	for (let i = 0; i < servers.length; i++) {
 		await ns.killall(servers[i])
 		await ns.scp(filesToDownload, 'home', servers[i])
