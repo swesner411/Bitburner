@@ -1,0 +1,10 @@
+export async function main(ns) {
+  if (ns.getHostname() !== "home") {
+    throw new Exception("Run this script from home");
+  }
+  await ns.wget(
+    `https://raw.githubusercontent.com/swesner411/bitburner/master/src/init.ns`,
+    "init.ns"
+  );
+  ns.run("init.ns", 1);
+}

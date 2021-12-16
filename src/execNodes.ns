@@ -1,0 +1,10 @@
+export async function main(ns) {
+	const files = ["node.ns"]
+	const start = "node.ns"
+	const servers = ["n00dles", "foodnstuff", "sigma-cosmetics", "joesguns"]
+	for (let i = 0; i < servers.length; i++) {
+		await ns.scp(files, 'home', servers[i])
+		ns.exec(start, servers[i], 1, servers[i], 1, 1)
+		await ns.run(start, 1, servers[i])
+	}
+}
