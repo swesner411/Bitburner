@@ -10,7 +10,7 @@ export async function main(ns) {
   if (hostname !== 'home') {
     throw new Exception('Run this script from home')
   }
-  ns.run('killAll.ns',1,filesToDownload)
+  ns.run('killAll.ns',1)
   for (let i = 0; i < filesToDownload.length; i++) {
     const filename = filesToDownload[i]
     const path = baseUrl + filename

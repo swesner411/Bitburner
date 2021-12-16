@@ -1,10 +1,15 @@
+const scriptsToKill= [
+  'execNodes.ns',
+  'node.ns',
+  'killAll.ns',
+]
+
 export async function main(ns) {
-	var servers = ns.args[0];
 	let hostname = ns.getHostname()
 	if (hostname !== 'home') {
 		throw new Exception('Run the script from home')
 	}
-	for(let i = 0; i > servers.length; i++) {
-		ns.killall(servers[i])
+	for(let i = 0; i > scriptsToKill.length; i++) {
+		ns.killall(scriptsToKill[i])
 	}
 }
