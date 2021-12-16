@@ -1,4 +1,4 @@
-const baseUrl = 'https://raw.githubusercontent.com/swesner411/bitburner/master/src/'
+const baseUrl = 'https://raw.githubusercontent.com/swesner411/bitburner/main/src/'
 const filesToDownload = [
   'execNodes.ns',
   'node.ns',
