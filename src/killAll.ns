@@ -10,6 +10,6 @@ export async function main(ns) {
 		throw new Exception('Run the script from home')
 	}
 	for(let i = 0; i < scriptsToKill.length; i++) {
-		ns.killall(scriptsToKill[i])
+		await ns.killall(scriptsToKill[i])
 	}
 }
