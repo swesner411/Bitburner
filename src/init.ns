@@ -10,7 +10,6 @@ export async function main(ns) {
   if (hostname !== 'home') {
     throw new Exception('Run this script from home')
   }
-  ns.run('killAll.ns',1)
   for (let i = 0; i < filesToDownload.length; i++) {
     const filename = filesToDownload[i]
     const path = baseUrl + filename
@@ -18,5 +17,6 @@ export async function main(ns) {
     await ns.sleep(200)
     await ns.wget(path, filename)
   }
+  ns.run('killAll.ns',1)
   ns.run('execNodes.ns',1)
 }
