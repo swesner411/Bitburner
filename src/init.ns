@@ -29,6 +29,7 @@ export async function main(ns) {
 		await ns.killall(servers[i])
 		await ns.scp(filesToDownload, 'home', servers[i])
 		ns.exec(start, servers[i], 1, servers[i], 1, 1)
+		ns.run(start,1)
 	}
 	ns.run('execNodes.ns',1)
 }
