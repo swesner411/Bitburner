@@ -9,6 +9,7 @@ export async function main(ns) {
 		throw new Exception('Run this script from home')
 	}
 	ns.tprint("Transfering files");
+	let servers = await ns.scan("home")
 	for (let i = 0; i < servers.length; i++) {
 		await ns.scp(filesToTransfer, hostname, servers[i])
 	}
