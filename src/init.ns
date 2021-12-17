@@ -6,10 +6,10 @@ export async function main(ns) {
 	await ns.wget(
 		`https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
 		"downloadFiles.ns"
-	);
+	)
 	let scripts = ['downloadFiles.ns', 'rootAccess.ns', 'transferFiles.ns', 'startNodes.ns']
 	for (let i = 0; i < scripts.length; i++) {
 		ns.run(scripts[i])
-		while (ns.isRunning(scripts[i])) { await }
+		while(ns.isRunning(scripts[i])) { await }
 	}
 }
