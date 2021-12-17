@@ -6,7 +6,8 @@ const start = "node.ns"
 export async function main(ns) {
 	ns.tprint("Transfering files");
 	let servers = await ns.scan("home")
+	let hostName = ns.getHostname()
 	for (let i = 0; i < servers.length; i++) {
-		await ns.scp(filesToTransfer, ns.getHostname(), servers[i])
+		await ns.scp(filesToTransfer, hostName, servers[i])
 	}
 }

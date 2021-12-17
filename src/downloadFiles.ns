@@ -9,10 +9,11 @@ const filesToDownload = [
 export async function main(ns) {
 	ns.tprint("Downloading files");
 	let servers = await ns.scan("home")
+	let hostName = ns.getHostname()
 	for (let i = 0; i < filesToDownload.length; i++) {
 		const filename = filesToDownload[i]
 		const path = baseUrl + filename
-		await ns.scriptKill(filename, ns.getHostname())
+		await ns.scriptKill(filename, hostName)
 		await ns.wget(path, filename)
 	}
 }
