@@ -1,46 +1,17 @@
-const baseUrl = 'https://raw.githubusercontent.com/swesner411/bitburner/dev/src/'
-
-const filesToDownload = [
-	'node.ns',
-	'rootAccess.ns',
-	'transferFiles.ns'
-]
-
-const filesToTransfer = [
-	'node.ns'
-]
-const start = "node.ns"
-
 export async function main(ns) {
 	let hostname = ns.getHostname()
 	if (hostname !== 'home') {
 		throw new Exception('Run this script from home')
 	}
-	// Download files
-	let servers = await ns.scan("home")
-	for (let i = 0; i < filesToDownload.length; i++) {
-		const filename = filesToDownload[i]
-		const path = baseUrl + filename
-		await ns.scriptKill(filename, hostname)
-		await ns.wget(path, filename)
-	}
-	// Gain Root Access
-	for(let i = 0; i < servers.length; i++) {
-		if (ns.hasRootAccess(servers[i]) == false) {
-			if(ns.fileExists('brutessh')) {ns.brutessh(servers[i])}
-			if(ns.fileExists('ftpcrack')) {ns.ftpcrack(servers[i])}
-			if(ns.fileExists('relaysmtp')) {ns.relaysmtp(servers[i])}
-			if(ns.fileExists('httpworm')) {ns.httpworm(servers[i])}
-			if(ns.fileExists('sqlinject')) {ns.sqlinject(servers[i])}
-			if(ns.getServer().openPortCount >= ns.getServerNumPortsRequired(servers[i])) {ns.nuke(servers[i])}
-		}
-	}
-	// Transfer files
-	ns.tprint("Transfering files");
-	for (let i = 0; i < servers.length; i++) {
-		await ns.killall(servers[i])
-		await ns.scp(filesToTransfer, hostname, servers[i])
-		await ns.run(start, 1, servers[i])
-		ns.exec(start, servers[i], 1, servers[i], 1, 1)
-	}
+	await ns.wget(
+		`https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
+		"downloadFiles.ns"
+	);
+	ns.run('downloadFiles.ns')
+	while(true) {if(ns.isRunning('downloadFiles.ns')==false) {break} else {await ns.sleep(5)}
+	ns.run('rootAccess.ns')
+	while(true) {if(ns.isRunning('rootAccess.ns')==false) {break} else {await ns.sleep(5)}
+	ns.run('transferFiles.ns')
+	while(true) {if(ns.isRunning('transferFiles.ns')==false) {break} else {await ns.sleep(5)}
+	ns.run('startNodes')
 }
