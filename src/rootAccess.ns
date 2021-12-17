@@ -1,14 +1,20 @@
+const hackPrograms = [
+	'BruteSSH.exe',
+	'FTPCrack.exe',
+	'relaySMTP.exe',
+	'HTTPWorm.exe',
+	'SQLInject.exe'
+]
 export async function main(ns) {
 	ns.tprint("Refreshing Root Access");
 	let servers = await ns.scan("home")
-	for(let i = 0; i < servers.length; i++) {
-		if (ns.hasRootAccess(servers[i]) == false) {
-			if(ns.fileExists('brutessh')) {ns.brutessh(servers[i])}
-			if(ns.fileExists('ftpcrack')) {ns.ftpcrack(servers[i])}
-			if(ns.fileExists('relaysmtp')) {ns.relaysmtp(servers[i])}
-			if(ns.fileExists('httpworm')) {ns.httpworm(servers[i])}
-			if(ns.fileExists('sqlinject')) {ns.sqlinject(servers[i])}
-			if(ns.getServer().openPortCount >= ns.getServerNumPortsRequired(servers[i])) {ns.nuke(servers[i])}
-		}
+	let hostName = ns.getHostname()
+	for (let i = 0; i < servers.length; i++) {
+		hackPrograms.forEach((hackProgram) => {
+			if (ns.fileExists(hackProgram)) {
+				ns[hackProgram.split('.').shift().toLocaleLowerCase()](hostName)
+			}
+		})
+		if (ns.getServer(servers[i]).openPortCount >= ns.getServerNumPortsRequired(servers[i])) { ns.nuke(servers[i]) }
 	}
 }
