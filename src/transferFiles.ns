@@ -1,7 +1,6 @@
 const filesToTransfer = [
 	'node.ns'
 ]
-const start = "node.ns"
 
 export async function main(ns) {
 	ns.tprint("Transfering files");
