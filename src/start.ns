@@ -6,5 +6,9 @@ export async function main(ns) {
     `https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
     "downloadFiles.ns"
   );
-  ns.run("downloadFiles.ns", 1);
+  await ns.wget(
+    `https://raw.githubusercontent.com/swesner411/bitburner/dev/src/init.ns`,
+    "init.ns"
+  );
+  ns.run("init.ns", 1);
 }

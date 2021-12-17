@@ -20,6 +20,4 @@ export async function main(ns) {
 		await ns.scriptKill(filename, hostname)
 		await ns.wget(path, filename)
 	}
-	await ns.run("rootAccess.ns", 1)
-	ns.run("transferFiles.ns", 1)
 }
