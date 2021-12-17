@@ -17,11 +17,7 @@ export async function main(ns) {
 		throw new Exception('Run this script from home')
 	}
 	// Download files
-	let hostname = ns.getHostname()
-	if (hostname !== 'home') {
-		throw new Exception('Run this script from home')
-	}
-	const servers = await ns.scan("home")
+	let servers = await ns.scan("home")
 	for (let i = 0; i < filesToDownload.length; i++) {
 		const filename = filesToDownload[i]
 		const path = baseUrl + filename
@@ -29,7 +25,6 @@ export async function main(ns) {
 		await ns.wget(path, filename)
 	}
 	// Gain Root Access
-	let servers = await ns.scan("home")
 	for(let i = 0; i < servers.length; i++) {
 		if (ns.hasRootAccess(servers[i]) == false) {
 			if(ns.fileExists('brutessh')) {ns.brutessh(servers[i])}
@@ -42,11 +37,6 @@ export async function main(ns) {
 	}
 	// Transfer files
 	ns.tprint("Transfering files");
-	let hostname = ns.getHostname()
-	if (hostname !== 'home') {
-		throw new Exception('Run this script from home')
-	}
-	const servers = await ns.scan("home");
 	for (let i = 0; i < servers.length; i++) {
 		await ns.killall(servers[i])
 		await ns.scp(filesToTransfer, hostname, servers[i])
