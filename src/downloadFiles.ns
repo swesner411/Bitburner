@@ -8,18 +8,18 @@ const filesToDownload = [
 const start = "node.ns"
 
 export async function main(ns) {
-	ns.print("Downloading files");
+	ns.tprint("Downloading files")
 	let hostname = ns.getHostname()
 	if (hostname !== 'home') {
 		throw new Exception('Run this script from home')
 	}
-	const servers = await ns.scan("home");
+	const servers = await ns.scan("home")
 	for (let i = 0; i < filesToDownload.length; i++) {
 		const filename = filesToDownload[i]
 		const path = baseUrl + filename
 		await ns.scriptKill(filename, hostname)
 		await ns.wget(path, filename)
 	}
-	ns.run("rootAccess.ns", 1);
-	ns.run("transferFiles.ns", 1);
+	ns.run("rootAccess.ns", 1)
+	ns.run("transferFiles.ns", 1)
 }

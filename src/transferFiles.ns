@@ -4,7 +4,7 @@ const filesToTransfer = [
 const start = "node.ns"
 
 export async function main(ns) {
-	ns.print("Transfering files");
+	ns.tprint("Transfering files");
 	let hostname = ns.getHostname()
 	if (hostname !== 'home') {
 		throw new Exception('Run this script from home')
