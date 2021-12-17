@@ -9,6 +9,7 @@ const servers = await ns.scan("home");
 const start = "node.ns"
 
 export async function main(ns) {
+	print("Downloading files");
 	let hostname = ns.getHostname()
 	if (hostname !== 'home') {
 		throw new Exception('Run this script from home')
