@@ -5,4 +5,5 @@ export async function main(ns) {
 	}
 	await ns.run('downloadFiles.ns',1);
 	await ns.run('rootAccess.ns', 1);
+	await ns.run('transferFiles.ns', 1);
 }
