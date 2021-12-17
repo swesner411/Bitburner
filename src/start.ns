@@ -3,8 +3,8 @@ export async function main(ns) {
     throw new Exception("Run this script from home");
   }
   await ns.wget(
-    `https://raw.githubusercontent.com/swesner411/bitburner/dev/src/init.ns`,
-    "init.ns"
+    `https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
+    "downloadFiles.ns"
   );
-  ns.run("init.ns", 1);
+  ns.run("downloadFiles.ns", 1);
 }
