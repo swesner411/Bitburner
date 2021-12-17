@@ -1,9 +1,15 @@
 export async function main(ns) {
-	ns.tprint("Establishing Root Access");
-	const servers = await ns.scan("home");
-	for(const i = 0; i < servers.length; i++) {
-		if (hasRootAccess(servers[i]) == false) {
-			nuke(servers[i]);
+	ns.tprint("Refreshing Root Access")
+	let servers = await ns.scan("home")
+	for(let i = 0; i < servers.length; i++) {
+		if (ns.hasRootAccess(servers[i]) == false) {
+			let ports = 0;
+			if(ns.fileExists('brutessh')) {ns.brutessh(servers[i]);ports++;}
+			if(ns.fileExists('ftpcrack')) {ns.ftpcrack(servers[i]);ports++;}
+			if(ns.fileExists('relaysmtp')) {ns.relaysmtp(servers[i]);ports++;}
+			if(ns.fileExists('httpworm')) {ns.httpworm(servers[i]);ports++;}
+			if(ns.fileExists('sqlinject')) {ns.sqlinject(servers[i]);ports++;}
+			if(ports >= ns.getServerNumPortsRequired(servers[i])) {ns.nuke(servers[i])}
 		}
 	}
 }
