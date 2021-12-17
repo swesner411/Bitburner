@@ -13,5 +13,5 @@ export async function main(ns) {
 	while(true) {if(ns.isRunning('rootAccess.ns')==false) {break} else {await ns.sleep(1)}}
 	ns.run('transferFiles.ns')
 	while(true) {if(ns.isRunning('transferFiles.ns')==false) {break} else {await ns.sleep(1)}}
-	ns.run('startNodes')
+	ns.run('startNodes.ns')
 }
