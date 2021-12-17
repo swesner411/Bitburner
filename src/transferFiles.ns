@@ -4,13 +4,9 @@ const filesToTransfer = [
 const start = "node.ns"
 
 export async function main(ns) {
-	let hostname = ns.getHostname()
-	if (hostname !== 'home') {
-		throw new Exception('Run this script from home')
-	}
 	ns.tprint("Transfering files");
 	let servers = await ns.scan("home")
 	for (let i = 0; i < servers.length; i++) {
-		await ns.scp(filesToTransfer, hostname, servers[i])
+		await ns.scp(filesToTransfer, ns.getHostname(), servers[i])
 	}
 }

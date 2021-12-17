@@ -7,16 +7,12 @@ const filesToDownload = [
 ]
 
 export async function main(ns) {
-	let hostname = ns.getHostname()
-	if (hostname !== 'home') {
-		throw new Exception('Run this script from home')
-	}
 	ns.tprint("Downloading files");
 	let servers = await ns.scan("home")
 	for (let i = 0; i < filesToDownload.length; i++) {
 		const filename = filesToDownload[i]
 		const path = baseUrl + filename
-		await ns.scriptKill(filename, hostname)
+		await ns.scriptKill(filename, ns.getHostname())
 		await ns.wget(path, filename)
 	}
 }
