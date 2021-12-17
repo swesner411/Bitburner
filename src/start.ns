@@ -7,4 +7,4 @@ export async function main(ns) {
     "init.ns"
   );
   ns.run("init.ns", 1);
-
+}

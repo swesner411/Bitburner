@@ -1,0 +1,9 @@
+const servers = await ns.scan("home");
+
+export async function main(ns) {
+	for(const i = 0; i < servers.length; i++) {
+		if (hasRootAccess(servers[i]) == false) {
+			nuke(servers[i]);
+		}
+	}
+}
