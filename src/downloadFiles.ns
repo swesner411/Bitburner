@@ -3,7 +3,8 @@ const baseUrl = 'https://raw.githubusercontent.com/swesner411/bitburner/dev/src/
 const filesToDownload = [
 	'node.ns',
 	'rootAccess.ns',
-	'transferFiles.ns'
+	'transferFiles.ns',
+	'startNodes.ns'
 ]
 
 export async function main(ns) {
