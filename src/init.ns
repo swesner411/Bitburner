@@ -7,9 +7,9 @@ export async function main(ns) {
 		`https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
 		"downloadFiles.ns"
 	);
-	let scripts = ['downloadFiles.ns','rootAccess.ns','transferFiles.ns','startNodes.ns']
-	for(let i = 0; i < scripts.length; i++) {
+	let scripts = ['downloadFiles.ns', 'rootAccess.ns', 'transferFiles.ns', 'startNodes.ns']
+	for (let i = 0; i < scripts.length; i++) {
 		ns.run(scripts[i])
-		while(true) {if(ns.isRunning(scripts[i])==false) {break} else {await ns.sleep(1)}}
+		while (true) { if (ns.isRunning(scripts[i]) == false) { break } else { await ns.sleep(1) } }
 	}
 }
