@@ -1,0 +1,9 @@
+export function settings() {
+  return {
+    repo: "https://raw.githubusercontent.com/swesner411/bitburner/dev/src/"
+  }
+}
+
+export async function main(ns) {
+  return {settings}
+}

@@ -1,4 +1,4 @@
-const baseUrl = 'https://raw.githubusercontent.com/swesner411/bitburner/dev/src/'
+import { settings } from 'settings.ns'
 
 const filesToDownload = [
 	'node.ns',
@@ -13,7 +13,7 @@ export async function main(ns) {
 	let hostName = ns.getHostname()
 	for (let i = 0; i < filesToDownload.length; i++) {
 		const filename = filesToDownload[i]
-		const path = baseUrl + filename
+		const path = settings.repo + filename
 		await ns.scriptKill(filename, hostName)
 		await ns.wget(path, filename)
 	}
