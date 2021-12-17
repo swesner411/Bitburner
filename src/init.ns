@@ -7,11 +7,9 @@ export async function main(ns) {
 		`https://raw.githubusercontent.com/swesner411/bitburner/dev/src/downloadFiles.ns`,
 		"downloadFiles.ns"
 	);
-	ns.run('downloadFiles.ns')
-	while(true) {if(ns.isRunning('downloadFiles.ns')==false) {break} else {await ns.sleep(1)}}
-	ns.run('rootAccess.ns')
-	while(true) {if(ns.isRunning('rootAccess.ns')==false) {break} else {await ns.sleep(1)}}
-	ns.run('transferFiles.ns')
-	while(true) {if(ns.isRunning('transferFiles.ns')==false) {break} else {await ns.sleep(1)}}
-	ns.run('startNodes.ns')
+	let scripts = ['downloadFiles.ns','rootAccess.ns','transferFiles.ns','startNodes.ns']
+	for(let i = 0; i < scripts.length; i++) {
+		ns.run(scripts[i])
+		while(true) {if(ns.isRunning(scripts[i])==false) {break} else {await ns.sleep(1)}}
+	}
 }
