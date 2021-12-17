@@ -1,5 +1,5 @@
 export async function main(ns) {
-	print("Establishing Root Access");
+	ns.print("Establishing Root Access");
 	const servers = await ns.scan("home");
 	for(const i = 0; i < servers.length; i++) {
 		if (hasRootAccess(servers[i]) == false) {
